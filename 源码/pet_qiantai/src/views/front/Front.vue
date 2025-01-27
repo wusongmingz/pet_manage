@@ -81,17 +81,24 @@ export default {
 </script>
 
 <style>
-.item{
+.item {
   display: inline-block;
   width: 100px;
-
   text-align: center;
-  cursor: pointer
+  cursor: pointer;
 }
+
 .item a {
-  color: 	#1E90FF;
+  color: #1E90FF;
 }
-.item:hover{
-  background-color: 	LightPink;
+
+.item:hover {
+  background-color: LightPink;
+}
+
+::v-deep .el-menu-demo .el-menu-item:hover {
+  background-color: LightPink; /* 修改为你想要的悬浮色 */
+  color: #1E90FF; /* 修改为你想要的文字颜色 */
 }
 </style>
+

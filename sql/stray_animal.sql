@@ -1,17 +1,17 @@
 /*
- Navicat Premium Data Transfer
+ Navicat Premium Dump SQL
 
- Source Server         : localhost_3306
+ Source Server         : java_develop
  Source Server Type    : MySQL
- Source Server Version : 80026
+ Source Server Version : 80016 (8.0.16)
  Source Host           : localhost:3306
  Source Schema         : stray_animal
 
  Target Server Type    : MySQL
- Target Server Version : 80026
+ Target Server Version : 80016 (8.0.16)
  File Encoding         : 65001
 
- Date: 12/10/2024 00:34:41
+ Date: 27/01/2025 21:32:51
 */
 
 SET NAMES utf8mb4;
@@ -22,12 +22,12 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '标题',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '内容',
   `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '时间',
   `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '封面',
-  `num` int NULL DEFAULT 0 COMMENT '报名人数',
+  `num` int(11) NULL DEFAULT 0 COMMENT '报名人数',
   `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '地址',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
@@ -43,11 +43,11 @@ INSERT INTO `activity` VALUES (7, '征集 | 流浪动物救助故事 | 第二季
 -- ----------------------------
 DROP TABLE IF EXISTS `adopt`;
 CREATE TABLE `adopt`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `animal_id` int NOT NULL COMMENT '流浪动物id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `animal_id` int(11) NOT NULL COMMENT '流浪动物id',
   `adopt_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '领养状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of adopt
@@ -58,7 +58,7 @@ CREATE TABLE `adopt`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `animal`;
 CREATE TABLE `animal`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '动物名字',
   `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '动物性别',
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '种类',
@@ -71,9 +71,9 @@ CREATE TABLE `animal`  (
   `adopt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '领养状态',
   `information` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '其他描述',
   `is_adopt` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '是否被领养',
-  `praise` int NULL DEFAULT 0,
+  `praise` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of animal
@@ -88,10 +88,10 @@ INSERT INTO `animal` VALUES (4, '咳咳', '母', '狸花猫', '3', 'http://local
 -- ----------------------------
 DROP TABLE IF EXISTS `applcation`;
 CREATE TABLE `applcation`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '姓名',
   `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '性别',
-  `age` int NULL DEFAULT NULL COMMENT '年龄',
+  `age` int(11) NULL DEFAULT NULL COMMENT '年龄',
   `experience` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '养宠经验',
   `pet` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '宠物',
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '联系方式',
@@ -101,10 +101,10 @@ CREATE TABLE `applcation`  (
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '住址',
   `reason` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '领养理由',
   `state` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT '待审核' COMMENT '状态',
-  `animal_id` int NULL DEFAULT NULL COMMENT '动物id',
-  `user_id` int NULL DEFAULT NULL COMMENT '用户id',
+  `animal_id` int(11) NULL DEFAULT NULL COMMENT '动物id',
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '用户id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of applcation
@@ -112,16 +112,17 @@ CREATE TABLE `applcation`  (
 INSERT INTO `applcation` VALUES (1, '张胜', '男', 29, '无经验', NULL, '13899887799', '未婚', '5000+', '程序员', '广州', '喜欢', '审核不通过', 2, 2);
 INSERT INTO `applcation` VALUES (2, '王二', '男', 29, '有经验', NULL, '13988990099', '已婚', '9000+', '私企员工', '广州', '喜欢', '审核通过', 2, 3);
 INSERT INTO `applcation` VALUES (3, '程序员山山', '男', 28, '有经验', NULL, '15855664477', '未婚', '3000', '程序员', '合肥', '喜欢小动物', '审核通过', 3, 1);
+INSERT INTO `applcation` VALUES (4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '待审核', 4, 5);
 
 -- ----------------------------
 -- Table structure for article
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
-  `user_id` int NULL DEFAULT NULL,
+  `user_id` int(11) NULL DEFAULT NULL,
   `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -139,35 +140,58 @@ INSERT INTO `article` VALUES (8, '爱护动物人人有责', '![7777.jpg](http:/
 -- ----------------------------
 DROP TABLE IF EXISTS `article_kp`;
 CREATE TABLE `article_kp`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '标题',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '内容',
   `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '时间',
   `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '封面',
-  `read1` int NULL DEFAULT 0 COMMENT '阅读数',
+  `read1` int(11) NULL DEFAULT 0 COMMENT '阅读数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of article_kp
 -- ----------------------------
-INSERT INTO `article_kp` VALUES (6, '测网速文章', '222222', '2022-04-04 13:05:34', 'http://localhost:9090/file/778dcce1cd5946109af4a527e48c9a18.jpg', 6);
-INSERT INTO `article_kp` VALUES (7, '少时诵诗书', '222', '2022-04-04 13:17:51', 'http://localhost:9090/file/67f86caf6da04db1a4fc43a2ce05b82d.jpg', 9);
+INSERT INTO `article_kp` VALUES (6, '文章二：春节宠物寄养市场火爆，背后问题不容忽视', '春节临近，不少宠物主人面临一个难题：回家过年，宠物怎么办？宠物寄养市场因此迎来旺季，但在这火爆的背后，却隐藏着诸多问题。\n一、价格上涨，供不应求\n记者调查发现，北京、上海等地的宠物寄养机构在春节期间几乎 “一房难求”。寄养价格也大幅上涨，有些甚至快赶上酒店价格。以北京为例，一些宠物度假村的豪华套房春节期间每天收费高达 1080 元，还需额外加收费用。即便如此，早在年初就已被抢购一空。在上海，宠物医院和宠物店的寄养价格也翻倍增长，条件稍好的宠物间一天要 400 元，但仍然供不应求。\n![d4d99c890a35fc06f4fb03ba35e02b6.jpg](http://localhost:9090/file/67fffbd20db848088bd4b2de2396a9a1.jpg)\n二、服务质量参差不齐，问题频发\n虽然价格高昂，但宠物寄养服务质量却参差不齐。不少消费者在第三方投诉平台反映，宠物寄养后出现各种健康问题。有的宠物无人照料，吃了变质食物导致生病；有的在寄养期间被咬伤，却未得到及时治疗，导致病情恶化。甚至还有宠物因店家疏忽，被关在烘干箱中闷死的悲剧发生。\n三、行业规范缺失，维权困难\n目前，宠物寄养行业缺乏统一的收费标准和服务规范。不同商家的收费差异巨大，但服务质量却未必成正比。当宠物在寄养过程中出现问题时，宠物主人往往面临维权困难的局面。虽然宠物主和寄养机构之间形成保管合同关系，但现实中即便有合同约束，也难以避免意外情况发生。由于缺乏明确的行业标准，纠纷处理往往无据可依，双方各执一词，让宠物主人陷入困境。\n四、专家建议：加强监管，建立行业标准\n受访专家指出，宠物寄养行业必须尽快建立健全行业标准和管理办法。明确收费标准，规范服务内容，让纠纷处理有章可循。宠物主人在选择寄养机构时，也应审慎考察，尽量选择有资质、口碑好的机构，并签订详细的书面寄养协议，明确双方的权利和义务，以保障宠物的安全和自身权益。', '2024-04-04 13:05:34', 'http://localhost:9090/file/778dcce1cd5946109af4a527e48c9a18.jpg', 6);
+INSERT INTO `article_kp` VALUES (7, '宠物养护全攻略，让爱宠健康成长', '在现代生活中，宠物已经成为许多家庭不可或缺的成员，它们给我们带来无尽的欢乐和陪伴。然而，想要让宠物健康快乐地成长，可不是一件简单的事，需要主人掌握全面的养护知识。\n一、选择合适的宠物品种\n在决定养宠物前，深入了解不同宠物品种的特点至关重要。狗狗通常活泼好动，需要经常外出运动和社交；猫咪则相对独立，更享受家中的慵懒时光。除此之外，像爬行动物、鸟类等特殊宠物，对生活环境和饲养条件也有独特要求。主人应根据自己的生活方式、居住环境以及兴趣爱好来慎重选择，确保能给予宠物最适宜的生活。\n二、准备充足的宠物用品\n迎接新宠物前，要准备好一系列生活用品。食物和水是基本需求，同时要根据宠物类型准备猫砂、狗窝等。对于狗狗，牵引绳是出门必备；猫咪则需要猫抓板和爬架来满足它们的天性。这些用品不仅保障宠物的基本生活，还能提升它们在家中的生活舒适度。\n三、合理安排饮食\n不同宠物的饮食需求差异很大。狗狗以肉类为主食，但也要搭配适量的蔬菜和谷物，以保证营养均衡；猫咪则对高蛋白的猫粮更为依赖。此外，要严格控制宠物的食量，避免过度喂养导致肥胖。肥胖会引发多种健康问题，如糖尿病、关节疾病等，严重影响宠物的生活质量。\n四、定期健康检查\n定期带宠物去兽医院进行健康检查是保障它们健康的关键。兽医可以通过检查及时发现潜在的健康问题，并给予专业的治疗建议。同时，按照规定为宠物接种疫苗，能有效预防各类传染病，让宠物远离疾病威胁。\n五、适当运动锻炼\n运动对宠物的健康至关重要。根据宠物的品种和年龄，为它们制定合适的运动计划。狗狗可以每天外出散步、玩耍，不仅能锻炼它们的身体，还能增进与主人的感情；猫咪则可以在家中设置一些攀爬和玩耍的设施，鼓励它们多活动。\n六、给予心理关怀和陪伴\n宠物也需要情感上的关怀和陪伴。主人要抽出时间与宠物互动，抚摸、玩耍、训练都是增进感情的好方式。给予宠物足够的关注，能让它们感受到家的温暖，减少因孤独而产生的焦虑和行为问题。', '2024-04-04 13:17:51', 'http://localhost:9090/file/67f86caf6da04db1a4fc43a2ce05b82d.jpg', 10);
+
+-- ----------------------------
+-- Table structure for booking
+-- ----------------------------
+DROP TABLE IF EXISTS `booking`;
+CREATE TABLE `booking`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `time_range` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `location` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `pet_info` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of booking
+-- ----------------------------
+INSERT INTO `booking` VALUES (4, '上门遛狗 标准服务：30分钟', '', '', '', 'wuzj');
+INSERT INTO `booking` VALUES (5, '上门遛狗 标准服务：30分钟', '', '', '', 'wuzj');
+INSERT INTO `booking` VALUES (6, '上门遛狗 标准服务：30分钟', '21231', '4232', '4231', 'wuzjtest');
+INSERT INTO `booking` VALUES (7, '上门遛狗 标准服务：30分钟', '21231', '4232', '4231', 'wuzjtest');
+INSERT INTO `booking` VALUES (8, '上门遛狗 标准服务：30分钟', '2025', '广州', '不爱吃饭', 'wuzj');
 
 -- ----------------------------
 -- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '回复内容',
   `user` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '回复人',
   `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '回复时间',
-  `pid` int NULL DEFAULT NULL COMMENT '父id',
-  `article_id` int NULL DEFAULT NULL COMMENT '文章id',
-  `type` int NULL DEFAULT NULL,
+  `pid` int(11) NULL DEFAULT NULL COMMENT '父id',
+  `article_id` int(11) NULL DEFAULT NULL COMMENT '文章id',
+  `type` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
@@ -180,13 +204,17 @@ INSERT INTO `comment` VALUES (9, '哈哈', 'myjjj', '2023-12-13 00:04:53', NULL,
 INSERT INTO `comment` VALUES (10, '你好啥', '管理员', '2023-12-13 00:21:33', NULL, 8, 2);
 INSERT INTO `comment` VALUES (11, '11111', '管理员', '2024-04-29 18:54:56', NULL, 2, 1);
 INSERT INTO `comment` VALUES (12, '好好', '管理员', '2024-04-29 18:56:08', NULL, 1, 1);
+INSERT INTO `comment` VALUES (14, '测试评论', '管理员', '2025-01-27 09:52:53', NULL, 8, 2);
+INSERT INTO `comment` VALUES (15, '咳咳猫猫很可爱', 'wuzj', '2025-01-27 10:19:02', NULL, 4, 1);
+INSERT INTO `comment` VALUES (16, '111111', 'wuzj', '2025-01-27 13:56:32', NULL, 3, 1);
+INSERT INTO `comment` VALUES (17, '2221', 'wuzj', '2025-01-27 14:13:24', NULL, 3, 1);
 
 -- ----------------------------
 -- Table structure for donate
 -- ----------------------------
 DROP TABLE IF EXISTS `donate`;
 CREATE TABLE `donate`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '捐款人',
   `goods` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '捐赠物资',
   `time` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '捐款事件',
@@ -203,7 +231,7 @@ INSERT INTO `donate` VALUES (1, '张三', '牛奶', '2022-04-04 11:58:21');
 -- ----------------------------
 DROP TABLE IF EXISTS `feed`;
 CREATE TABLE `feed`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '环境照片1',
   `img2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '环境照片2',
   `img3` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '环境照片3',
@@ -222,7 +250,7 @@ INSERT INTO `feed` VALUES (1, 'http://localhost:9090/file/bc8a89465259447daf7f99
 -- ----------------------------
 DROP TABLE IF EXISTS `lost`;
 CREATE TABLE `lost`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '走失宠物名字',
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '种类',
   `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '性别',
@@ -244,7 +272,7 @@ INSERT INTO `lost` VALUES (2, '小米', '猫', '母', '小法', '13988997766', '
 -- ----------------------------
 DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
   `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '内容',
   `time` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '时间',
@@ -262,7 +290,7 @@ INSERT INTO `notice` VALUES (2, '系统开发完成', '系统已经完成，欢�
 -- ----------------------------
 DROP TABLE IF EXISTS `rescue`;
 CREATE TABLE `rescue`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '名称',
   `addres` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '地址',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '照片',
@@ -282,7 +310,7 @@ INSERT INTO `rescue` VALUES (1, '救助1号', '市府广场', 'http://localhost:
 -- ----------------------------
 DROP TABLE IF EXISTS `salvation`;
 CREATE TABLE `salvation`  (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `information` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '情况描述',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '现场照片',
   `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '地点',
@@ -305,15 +333,15 @@ INSERT INTO `salvation` VALUES (5, '啤酒猫咪', 'http://localhost:9090/file/1
 -- ----------------------------
 DROP TABLE IF EXISTS `sterilization`;
 CREATE TABLE `sterilization`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `animal_id` int NULL DEFAULT NULL COMMENT '流浪动物id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `animal_id` int(11) NULL DEFAULT NULL COMMENT '流浪动物id',
   `catch1` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '捕捉状态',
   `sterilization` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '绝育状态',
   `release1` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '放生状态',
   `vaccine` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL COMMENT '疫苗状态',
   `animal_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sterilization
@@ -348,16 +376,16 @@ INSERT INTO `sys_dict` VALUES ('s-marketing', 'el-icon-s-marketing', 'icon');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_file`;
 CREATE TABLE `sys_file`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '文件名称',
   `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '文件类型',
-  `size` bigint NULL DEFAULT NULL COMMENT '文件大小(kb)',
+  `size` bigint(20) NULL DEFAULT NULL COMMENT '文件大小(kb)',
   `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '下载链接',
   `md5` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '文件md5',
   `is_delete` tinyint(1) NULL DEFAULT 0 COMMENT '是否删除',
   `enable` tinyint(1) NULL DEFAULT 1 COMMENT '是否禁用链接',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_file
@@ -437,20 +465,21 @@ INSERT INTO `sys_file` VALUES (108, '7777.jpg', 'jpg', 342, 'http://localhost:90
 INSERT INTO `sys_file` VALUES (109, '逗狗宠物.png', 'png', 76, 'http://localhost:9090/file/4dee79f00ec64dee89f55d8610653095.png', '02e20353ea6982b9ec08c4cd759108d6', 0, 1);
 INSERT INTO `sys_file` VALUES (110, '宠物笑脸.png', 'png', 6, 'http://localhost:9090/file/e02ed05c3ea04483976652a72a766244.png', '3bfdcb107facfce927eb0a4f8b74e3e9', 0, 1);
 INSERT INTO `sys_file` VALUES (111, '20230415081411_f2e46.thumb.400_0.jpg', 'jpg', 39, 'http://localhost:9090/file/2967faa7cbbc43c3a8299e99df309243.jpg', 'cbaadd4821a9c5b7de6fc45dd42a52bb', 0, 1);
+INSERT INTO `sys_file` VALUES (112, 'd4d99c890a35fc06f4fb03ba35e02b6.jpg', 'jpg', 128, 'http://localhost:9090/file/67fffbd20db848088bd4b2de2396a9a1.jpg', 'edd7a88b317683a16dcb2ab7d5f4c553', 0, 1);
 
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
   `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '路径',
   `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '图标',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '描述',
-  `pid` int NULL DEFAULT NULL COMMENT '父级id',
+  `pid` int(11) NULL DEFAULT NULL COMMENT '父级id',
   `page_path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '页面路径',
-  `sort_num` int NULL DEFAULT NULL COMMENT '排序',
+  `sort_num` int(11) NULL DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
@@ -468,13 +497,13 @@ INSERT INTO `sys_menu` VALUES (12, '待绝育动物管理', '/sterilization', 'e
 INSERT INTO `sys_menu` VALUES (13, '申请领养管理', '/applcation', 'el-icon-menu', NULL, NULL, 'Applcation', 999);
 INSERT INTO `sys_menu` VALUES (14, '评论管理', '/comment', 'el-icon-menu', NULL, NULL, 'Comment', 999);
 INSERT INTO `sys_menu` VALUES (15, '流浪动物救助', '/salvation', 'el-icon-menu', NULL, NULL, 'Salvation', 999);
-INSERT INTO `sys_menu` VALUES (16, '喂养点管理', '/feed', 'el-icon-menu', NULL, NULL, 'Feed', 999);
+INSERT INTO `sys_menu` VALUES (16, '喂溜服务管理', '/feed', 'el-icon-menu', NULL, NULL, 'Feed', 999);
 INSERT INTO `sys_menu` VALUES (18, '动物走失管理', '/lost', 'el-icon-menu', NULL, NULL, 'Lost', 999);
 INSERT INTO `sys_menu` VALUES (19, '救助站管理', '/rescue', 'el-icon-menu', NULL, NULL, 'Rescue', 999);
 INSERT INTO `sys_menu` VALUES (20, '帖子管理', '/article', 'el-icon-menu', NULL, NULL, 'Article', 999);
 INSERT INTO `sys_menu` VALUES (21, '捐赠管理', '/donate', 'el-icon-menu', NULL, NULL, 'Donate', 999);
 INSERT INTO `sys_menu` VALUES (22, '公告管理', '/notice', 'el-icon-menu', NULL, NULL, 'Notice', 999);
-INSERT INTO `sys_menu` VALUES (23, '科普文章管理', '/articleKp', 'el-icon-menu', NULL, NULL, 'ArticleKp', 999);
+INSERT INTO `sys_menu` VALUES (23, '宠物科普管理', '/articleKp', 'el-icon-menu', NULL, NULL, 'ArticleKp', 999);
 INSERT INTO `sys_menu` VALUES (24, '活动管理', '/activity', 'el-icon-menu', NULL, NULL, 'Activity', 999);
 
 -- ----------------------------
@@ -482,7 +511,7 @@ INSERT INTO `sys_menu` VALUES (24, '活动管理', '/activity', 'el-icon-menu', 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '名称',
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '描述',
   `flag` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '唯一标识',
@@ -500,8 +529,8 @@ INSERT INTO `sys_role` VALUES (2, '普通用户', '普通用户', 'ROLE_USER');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu`  (
-  `role_id` int NOT NULL COMMENT '角色id',
-  `menu_id` int NOT NULL COMMENT '菜单id',
+  `role_id` int(11) NOT NULL COMMENT '角色id',
+  `menu_id` int(11) NOT NULL COMMENT '菜单id',
   PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '角色菜单关系表' ROW_FORMAT = DYNAMIC;
 
@@ -536,7 +565,7 @@ INSERT INTO `sys_role_menu` VALUES (2, 10);
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '用户名',
   `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '密码',
   `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '昵称',
@@ -549,14 +578,15 @@ CREATE TABLE `sys_user`  (
   `sex` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '性别',
   `birth` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '出生年月',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 'admin', 'admin', '管理员', 'admin@qq.com', '13988997788', '安徽合肥', '2022-01-22 21:10:27', 'http://localhost:9090/file/340f103c76914a32933225f923f82af6.jpg', 'ROLE_ADMIN', '男', '1995-06-06');
 INSERT INTO `sys_user` VALUES (2, 'zhang', '123', '张张', 'zhang@qq.com', '13677889900', '南京', '2022-02-26 22:10:14', 'http://localhost:9090/file/2967faa7cbbc43c3a8299e99df309243.jpg', 'ROLE_USER', '女', '1995-06-06');
-INSERT INTO `sys_user` VALUES (3, 'wang', '123', '我是王五', 'wang@qq.com', '13877668855', '上海', '2022-02-26 22:10:18', 'http://localhost:9090/file/6e8f37f7009e4d18a72e1970d2762faf.jpg', 'ROLE_USER', '男', '1995-06-06');
+INSERT INTO `sys_user` VALUES (3, 'wang', '123', '吴智杰', 'wang@qq.com', '13877668855', '上海', '2022-02-26 22:10:18', 'http://localhost:9090/file/6e8f37f7009e4d18a72e1970d2762faf.jpg', 'ROLE_USER', '男', '2002-11-01');
 INSERT INTO `sys_user` VALUES (4, 'myjjj', '111', 'myjjj', NULL, NULL, NULL, '2023-12-12 23:52:01', NULL, 'ROLE_ADMIN', NULL, NULL);
+INSERT INTO `sys_user` VALUES (5, 'wuzj', '123456', 'wuzj', NULL, NULL, NULL, '2025-01-26 11:29:26', NULL, 'ROLE_USER', NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

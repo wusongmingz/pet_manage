@@ -54,14 +54,14 @@ export default {
 
 <style>
 .el-menu-item.is-active {
-  background-color: rgb(38, 52, 69) !important;
+  background-color: rgb(99, 159, 232) !important;
 }
 .el-menu-item:hover {
-  background-color: rgb(38, 52, 69) !important;
+  background-color: rgb(139, 185, 241) !important;
 }
 
 .el-submenu__title:hover {
-  background-color: rgb(38, 52, 69) !important;
+  background-color: rgb(109, 167, 239) !important;
 }
 /*解决收缩菜单文字不消失问题*/
 .el-menu--collapse span {

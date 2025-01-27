@@ -6,7 +6,7 @@
 
     <div style="margin-bottom: 60px" >
       <el-card>
-        欢迎使用本系统
+        欢迎使用同城宠物喂溜系统
         <el-divider />
         以爱之名，宠你一生！
       </el-card>

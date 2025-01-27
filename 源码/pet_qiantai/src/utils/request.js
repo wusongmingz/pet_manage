@@ -12,6 +12,7 @@ const request = axios.create({
 request.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json;charset=utf-8';
     let user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null
+    
     if (user) {
         config.headers['token'] = user.token;  // 设置请求头
     }

@@ -2,8 +2,6 @@
   <div>
     <div style="margin: 10px 0">
       <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="name"></el-input>
-<!--      <el-input style="width: 200px" placeholder="请输入" suffix-icon="el-icon-message" class="ml-5" v-model="email"></el-input>-->
-<!--      <el-input style="width: 200px" placeholder="请输入" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>-->
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
     </div>
@@ -21,24 +19,21 @@
       >
         <el-button type="danger" slot="reference">批量删除 <i class="el-icon-remove-outline"></i></el-button>
       </el-popconfirm>
-      <!-- <el-upload action="http://localhost:9090/feed/import" :show-file-list="false" accept="xlsx" :on-success="handleExcelImportSuccess" style="display: inline-block">
-        <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
-      </el-upload>
-      <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i></el-button> -->
+     
     </div>
 
-    <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
+    <el-table :data="tableData" :key="tableData.id" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>
-      <el-table-column label="环境照片1"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img" :preview-src-list="[scope.row.img]"></el-image></template></el-table-column>
-      <el-table-column label="环境照片2"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img2" :preview-src-list="[scope.row.img2]"></el-image></template></el-table-column>
-      <el-table-column label="环境照片3"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img3" :preview-src-list="[scope.row.img3]"></el-image></template></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
-      <el-table-column prop="information" label="相关描述"></el-table-column>
+      <el-table-column prop="name" label="name"></el-table-column>
+      <el-table-column prop="location" label="地点"></el-table-column>
+      <el-table-column prop="petInfo" label="备注"></el-table-column>
+      <el-table-column prop="serviceTitle" label="选择服务"></el-table-column>
+      <el-table-column prop="timeRange" label="上门时间"></el-table-column>
 
-      <el-table-column label="操作"  width="180" align="center">
+      <el-table-column  label="操作"  width="180" align="center">
         <template slot-scope="scope">
-          <el-button type="success" @click="handleEdit(scope.row)">编辑 <i class="el-icon-edit"></i></el-button>
+          <el-button prop="id" type="success" @click="handleEdit(scope.row.id)">完成 <i class="el-icon-edit"></i></el-button>
           <el-popconfirm
               class="ml-5"
               confirm-button-text='确定'
@@ -48,7 +43,7 @@
               title="您确定删除吗？"
               @confirm="del(scope.row.id)"
           >
-            <el-button type="danger" slot="reference">删除 <i class="el-icon-remove-outline"></i></el-button>
+            <!-- <el-button type="danger" slot="reference">删除 <i class="el-icon-remove-outline"></i></el-button> -->
           </el-popconfirm>
         </template>
       </el-table-column>
@@ -119,15 +114,13 @@ export default {
   },
   methods: {
     load() {
-      this.request.get("/feed/page", {
-        params: {
-          pageNum: this.pageNum,
-          pageSize: this.pageSize,
-          name: this.name,
-        }
+      this.request.get("/bookings", {
       }).then(res => {
-        this.tableData = res.data.records
-        this.total = res.data.total
+        
+        this.tableData = res
+        this.total = res.length
+        console.log(this.tableData,111);
+
       })
     },
     save() {
@@ -156,21 +149,20 @@ export default {
         }
       })
     },
-    handleEdit(row) {
-      this.form = JSON.parse(JSON.stringify(row))
-      this.dialogFormVisible = true
-       this.$nextTick(() => {
-         if(this.$refs.img) {
-           this.$refs.img.clearFiles();
-         }
-         if(this.$refs.img3) {
-          this.$refs.img3.clearFiles();
-         }
-         if(this.$refs.img2) {
-           this.$refs.img2.clearFiles();
-         }
-       })
+    handleEdit(id) {
+      console.log(id);
+      
+      this.sendRequest(id)
+      this.load()
     },
+    sendRequest(id) {
+    // 在这里发送请求，使用 id 作为参数
+    this.request.delete(`/bookings/${id}`)
+      .then(res => {
+        console.log(res);
+      })
+      this.load()
+  },
     del(id) {
       this.request.delete("/feed/" + id).then(res => {
         if (res.code === '200') {

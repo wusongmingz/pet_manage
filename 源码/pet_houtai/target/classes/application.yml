@@ -21,5 +21,5 @@ mybatis-plus:
 
 files:
   upload:
-    path: C:\Users\wusongming\Desktop\吴智杰\宠物领养系统\源码\pet_houtai\files/
+    path: D:\桌面\宠物领养系统\源码\springboot\files/
 #    path: D:\毕设\Springboot+Vue宠物领养系统\springboot/files/       windows 使用此路径，对应项目的路径
