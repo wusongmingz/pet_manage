@@ -18,7 +18,7 @@
           <el-menu-item index="/front/lost">丢失宠物查看</el-menu-item>
           <el-menu-item index="/front/rescue">流浪宠物救助站</el-menu-item>
           <el-menu-item index="/front/article">宠物论坛</el-menu-item>
-          <el-menu-item index="/front/donate">宠物捐赠</el-menu-item>
+          <el-menu-item index="/front/donate">服务介绍</el-menu-item>
           <el-menu-item index="/front/articleKp">宠物资讯</el-menu-item>
           <el-menu-item index="/front/activity">热门活动</el-menu-item>
         </el-menu>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div style="width: 800px; margin: 0 auto">
+    <div style="width: 1200px; margin: 0 auto">
       <router-view />
     </div>
   </div>
