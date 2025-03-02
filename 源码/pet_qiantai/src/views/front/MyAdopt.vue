@@ -23,8 +23,8 @@
               </b>
             </div>
             <div style="line-height: 30px">
-              <div><b style="margin-right: 10px">是否绝育：</b>{{ item.animal.sterilization }}</div>
-              <div><b style="margin-right: 10px">疫苗接种：</b>{{ item.animal.vaccine }}</div>
+            
+             
               <div><b style="margin-right: 10px">身体状态：</b>{{ item.animal.status }}</div>
               <div><b style="margin-right: 10px">其他描述：</b>{{ item.animal.information }}</div>
             </div>

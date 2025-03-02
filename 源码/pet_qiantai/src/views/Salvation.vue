@@ -30,10 +30,10 @@
     <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'"  @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>
-      <el-table-column prop="information" label="情况描述"></el-table-column>
+      <el-table-column prop="information" label="自我介绍"></el-table-column>
       <el-table-column label="图片"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img" :preview-src-list="[scope.row.img]"></el-image></template></el-table-column>
-      <el-table-column prop="address" label="地点"></el-table-column>
-      <el-table-column prop="time" label="发现时间"></el-table-column>
+      <el-table-column prop="address" label="现居地"></el-table-column>
+      <el-table-column prop="time" label="工作经验"></el-table-column>
       <el-table-column prop="person" label="联系人"></el-table-column>
       <el-table-column prop="phone" label="联系方式"></el-table-column>
       <el-table-column prop="state" label="解决状态"></el-table-column>
@@ -69,19 +69,20 @@
 
     <el-dialog title="信息" :visible.sync="dialogFormVisible" width="30%" :close-on-click-modal="false">
       <el-form label-width="100px" size="small" style="width: 90%">
-        <el-form-item label="情况描述">
+        <el-form-item label="自我介绍">
           <el-input v-model="form.information" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="现场照片">
+        <el-form-item label="个人照片">
           <el-upload action="http://localhost:9090/file/upload" ref="img" :on-success="handleImgUploadSuccess">
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
         </el-form-item>
-        <el-form-item label="地点">
+        <el-form-item label="现居地">
           <el-input v-model="form.address" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="发现时间">
-          <el-date-picker v-model="form.time" type="datetime" value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"></el-date-picker>
+        <el-form-item label="工作经验">
+          <el-radio v-model="form.adopt" label="是">是</el-radio>
+          <el-radio v-model="form.adopt" label="否">否</el-radio>
         </el-form-item>
         <el-form-item label="联系人">
           <el-input v-model="form.person" autocomplete="off"></el-input>

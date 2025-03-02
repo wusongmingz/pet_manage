@@ -2,7 +2,7 @@
   <div style="min-height: calc(100vh - 60px); margin: 10px 0">
     <div class="app-container">
       <header class="app-header">
-        <img src="logo.png" alt="BOOMER" class="logo" />
+        <img src="../../assets/宠物天地.png" alt="BOOMER" class="logo" />
       </header>
       <main class="app-main">
         <h2>北京、上海、深圳 上门伴宠服务价格</h2>
@@ -198,7 +198,7 @@ export default {
 }
 
 .logo {
-  width: 200px;
+  width: 150px; /* 修改 logo 的宽度为 150px */
 }
 
 .app-main {

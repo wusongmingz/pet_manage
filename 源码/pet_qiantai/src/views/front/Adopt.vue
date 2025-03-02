@@ -15,8 +15,8 @@
               <span style="margin-left: 20px">{{ item.age }}</span>
             </div>
             <div style="line-height: 30px">
-              <div><b style="margin-right: 10px">是否绝育：</b>{{ item.sterilization }}</div>
-              <div><b style="margin-right: 10px">疫苗接种：</b>{{ item.vaccine }}</div>
+              
+             
               <div><b style="margin-right: 10px">身体状态：</b>{{ item.status }}</div>
               <div><b style="margin-right: 10px">其他描述：</b>{{ item.information }}</div>
               <div style="text-align: right;" ><el-button type="primary" @click="handleApply(item.id)">申请领养</el-button></div>

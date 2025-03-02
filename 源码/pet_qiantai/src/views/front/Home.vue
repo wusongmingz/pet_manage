@@ -3,7 +3,7 @@
     <div style="margin: 10px 0">
       <div style="width: 100%; display: flex">
         <div style="width:100%">
-          <video style="width: 100%" src="../../assets/animalvideo.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video>
+          <video style="width: 100%" src="../../assets/WeChat_20250219203917.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
 
 
     <div style="margin: 10px 0">
-      <div style="padding: 20px 10px; font-size: 28px; background-color: #fff; border-radius: 10px; color: #3F5EFB">流浪宠物</div>
+      <div style="padding: 20px 10px; font-size: 28px; background-color: #fff; border-radius: 10px; color: #3F5EFB">萌宠物周星</div>
       <el-card  v-for="item in tableData" :key="item.id" style="margin: 10px 0">
         <div style="display: flex">
           <div style="width: 140px" @click="$router.push('/front/homeDetail?id=' + item.id)"> <img :src="item.img" alt="" style="width: 100%; height: 160px; border-radius: 10px"></div>
@@ -35,7 +35,7 @@
             </div>
             <div style="line-height: 30px">
               <div><b style="margin-right: 10px">所属种类：</b>{{ item.type }}</div>
-              <div><b style="margin-right: 10px">活动范围：</b>{{ item.address }}</div>
+              <div><b style="margin-right: 10px">主人名称：</b>{{ item.address }}</div>
               <div><b style="margin-right: 10px">身体状态：</b>{{ item.status }}</div>
               <div><b style="margin-right: 10px">其他描述：</b>{{ item.information }}</div>
             </div>

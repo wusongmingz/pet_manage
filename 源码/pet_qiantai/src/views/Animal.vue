@@ -3,7 +3,7 @@
     <div style="margin: 10px 0">
       <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="name"></el-input>
       <el-select clearable v-model="adopt" placeholder="请选择" class="ml-5">
-        <el-option v-for="item in ['不可领养', '可领养']" :key="item" :label="item" :value="item"></el-option>
+        <el-option v-for="item in ['新用户', '老用户']" :key="item" :label="item" :value="item"></el-option>
       </el-select>
       <el-button class="ml-5" type="primary" @click="load">搜索</el-button>
       <el-button type="warning" @click="reset">重置</el-button>
@@ -32,16 +32,16 @@
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>
       <el-table-column prop="nickname" label="动物名字"></el-table-column>
-      <el-table-column prop="sex" label="动物性别"></el-table-column>
+      
       <el-table-column prop="type" label="种类"></el-table-column>
-      <el-table-column prop="age" label="年龄"></el-table-column>
+      
       <el-table-column label="图片"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img" :preview-src-list="[scope.row.img]"></el-image></template></el-table-column>
-      <el-table-column prop="address" label="活动范围"></el-table-column>
+      <el-table-column prop="address" label="主人名称"></el-table-column>
       <el-table-column prop="status" label="身体状态"></el-table-column>
-      <el-table-column prop="sterilization" label="是否绝育"></el-table-column>
-      <el-table-column prop="vaccine" label="疫苗接种"></el-table-column>
-      <el-table-column prop="adopt" label="可领养状态"></el-table-column>
-      <el-table-column prop="isAdopt" label="是否被领养"></el-table-column>
+  
+      
+      <el-table-column prop="adopt" label="用户状态"></el-table-column>
+     
       <el-table-column prop="information" label="其他描述"></el-table-column>
 
       <el-table-column label="操作"  width="180" align="center">
@@ -78,43 +78,29 @@
         <el-form-item label="动物名字">
           <el-input v-model="form.nickname" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="动物性别">
-          <el-radio v-model="form.sex" label="公">公</el-radio>
-          <el-radio v-model="form.sex" label="母">母</el-radio>
-        </el-form-item>
+       
         <el-form-item label="种类">
           <el-input v-model="form.type" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="年龄">
-          <el-input v-model="form.age" autocomplete="off"></el-input>
-        </el-form-item>
+      
         <el-form-item label="动物照片">
           <el-upload action="http://localhost:9090/file/upload" ref="img" :on-success="handleImgUploadSuccess">
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
         </el-form-item>
-        <el-form-item label="活动范围">
+        <el-form-item label="主人名称">
           <el-input v-model="form.address" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="身体状态">
           <el-input v-model="form.status" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="是否绝育">
-          <el-radio v-model="form.sterilization" label="是">是</el-radio>
-          <el-radio v-model="form.sterilization" label="否">否</el-radio>
+      
+    
+        <el-form-item label="用户状态">
+          <el-radio v-model="form.adopt" label="新用户">新用户</el-radio>
+          <el-radio v-model="form.adopt" label="老用户">老用户</el-radio>
         </el-form-item>
-        <el-form-item label="疫苗接种">
-          <el-radio v-model="form.vaccine" label="未接种">未接种</el-radio>
-          <el-radio v-model="form.vaccine" label="已接种">已接种</el-radio>
-        </el-form-item>
-        <el-form-item label="可领养状态">
-          <el-radio v-model="form.adopt" label="不可领养">不可领养</el-radio>
-          <el-radio v-model="form.adopt" label="可领养">可领养</el-radio>
-        </el-form-item>
-        <el-form-item label="是否被领养">
-          <el-radio v-model="form.isAdopt" label="是">是</el-radio>
-          <el-radio v-model="form.isAdopt" label="否">否</el-radio>
-        </el-form-item>
+       
         <el-form-item label="其他描述">
           <el-input type="textarea" v-model="form.information" autocomplete="off"></el-input>
         </el-form-item>

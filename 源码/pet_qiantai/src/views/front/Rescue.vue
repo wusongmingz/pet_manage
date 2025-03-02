@@ -5,9 +5,9 @@
       <el-table-column label="图片"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img" :preview-src-list="[scope.row.img]"></el-image></template></el-table-column>
       <el-table-column prop="name" label="名称"></el-table-column>
       <el-table-column prop="addres" label="地址"></el-table-column>
-      <el-table-column prop="person" label="联系人"></el-table-column>
-      <el-table-column prop="phone" label="联系方式"></el-table-column>
-      <el-table-column prop="information" label="相关描述"></el-table-column>
+      <el-table-column prop="person" label="推荐指数"></el-table-column>
+  
+      <el-table-column prop="information" label="推荐理由"></el-table-column>
 
     </el-table>
     <div  style="padding: 10px; margin: 10px 0; background-color: #fff; border-radius: 10px">
@@ -35,13 +35,11 @@
             <el-button size="small" type="primary">点击上传</el-button>
           </el-upload>
         </el-form-item>
-        <el-form-item label="联系人">
+        <el-form-item label="推荐指数">
           <el-input v-model="form.person" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="联系方式">
-          <el-input v-model="form.phone" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="相关描述">
+     
+        <el-form-item label="推荐理由">
           <el-input v-model="form.information" autocomplete="off"></el-input>
         </el-form-item>
 

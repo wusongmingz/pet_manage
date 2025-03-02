@@ -1,44 +1,38 @@
 <template>
   <div class="container">
-
-    <div style="width: 25%; display: flex;background-color: white;">
-
-      <div style="flex: 1;width: 50%;padding: 50px;display: flex;flex-direction: column;justify-content: center;" >
-        <div style="text-align: center; font-size: 30px; margin-bottom: 50px; color: #333 ;font-size: 30px;color: #000000" >宠 物 领 养 系 统</div>
-          <el-form :model="user" :rules="rules" ref="userForm">
-            <el-form-item prop="username">
-              <el-input size="medium" prefix-icon="el-icon-user" v-model="user.username" placeholder="请输入账号"></el-input>
-            </el-form-item>
-            <el-form-item prop="password" style="margin-bottom: 50px">
-              <el-input size="medium" prefix-icon="el-icon-lock" show-password v-model="user.password" placeholder="请输入密码"></el-input>
-            </el-form-item>
-            <el-form-item style="margin-top: 30px; display: flex;">
-              <el-button style="flex: 1;width: 100px" type="primary" size="small"  autocomplete="off" @click="login">登录</el-button>
-              <el-button style="flex: 1 ;width: 100px" type="warning" size="small"  autocomplete="off" @click="$router.push('/register')">前往注册</el-button>
-              <el-button style=" flex: 1 ;width: 100px;background-color: #67C23A;color: #ffffff" size="small" autocomplete="off" @click="handlePass">找回密码</el-button>
-            </el-form-item>
-          </el-form>
+    <div class="login-container">
+      <div class="login-header">
+        <img src="../assets/宠物天地.png" alt="logo" class="login-logo" />
+        <h1>同城宠物喂溜系统</h1>
+      </div>
+      <el-form :model="user" :rules="rules" ref="userForm">
+        <el-form-item prop="username">
+          <el-input size="medium" prefix-icon="el-icon-user" v-model="user.username" placeholder="请输入账号"></el-input>
+        </el-form-item>
+        <el-form-item prop="password" style="margin-bottom: 30px">
+          <el-input size="medium" prefix-icon="el-icon-lock" show-password v-model="user.password" placeholder="请输入密码"></el-input>
+        </el-form-item>
+        <el-form-item class="button-container">
+          <el-button type="primary" size="medium" @click="login">登录</el-button>
+          <el-button type="warning" size="medium" @click="$router.push('/register')">前往注册</el-button>
+          <el-button type="success" size="medium" @click="handlePass">找回密码</el-button>
+        </el-form-item>
+      </el-form>
+      <el-dialog title="找回密码" :visible.sync="dialogFormVisible" width="30%" >
+        <el-form label-width="100px" size="small">
+          <el-form-item label="用户名">
+            <el-input v-model="pass.username" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号">
+            <el-input v-model="pass.phone" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="passwordBack">重置密码</el-button>
         </div>
-
-        <el-dialog title="找回密码" :visible.sync="dialogFormVisible" width="30%" >
-          <el-form label-width="100px" size="small">
-            <el-form-item label="用户名">
-              <el-input v-model="pass.username" autocomplete="off"></el-input>
-            </el-form-item>
-            <el-form-item label="手机号">
-              <el-input v-model="pass.phone" autocomplete="off"></el-input>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="passwordBack">重置密码</el-button>
-          </div>
-        </el-dialog>
-
-
-   </div>
-
-
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -106,11 +100,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
   height: 100vh;
   overflow: hidden;
-  /*background-color: #dcd5b0;*/
   background-image: url("../assets/bg2.png");
   background-size: 100%;
   display: flex;
@@ -118,9 +111,46 @@ export default {
   justify-content: center;
   color: #666;
 }
-.wrapper {
-  height: 100vh;
-  background-image: linear-gradient(to bottom right, #4169E1 , 	#87CEFA);
-  overflow: hidden;
+
+.login-container {
+  width: 350px;
+  /* 修改背景颜色为透明，这里使用 rgba 设置透明度为 0.8，你可以根据需要调整 */
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.login-logo {
+  width: 40px;  /* 可以根据实际情况调整 logo 的宽度 */
+  height: 40px; /* 可以根据实际情况调整 logo 的高度 */
+  margin-right: 10px; /* 调整 logo 和文字之间的间距 */
+}
+
+.login-header h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 0;
+  color: #000;
+}
+
+.el-form-item {
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.dialog-footer {
+  text-align: right;
 }
 </style>

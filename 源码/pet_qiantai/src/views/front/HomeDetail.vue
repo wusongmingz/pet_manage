@@ -23,7 +23,7 @@
             </div>
 
             <div style="display: flex">
-              <div style="width: 80px"><b>活动范围:</b></div>
+              <div style="width: 80px"><b>主人名称:</b></div>
               <div>{{ animal.address }}</div>
             </div>
 

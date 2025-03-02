@@ -4,13 +4,13 @@
     <el-table :data="tableData" stripe size="mid" style="border-radius: 10px"   @selection-change="handleSelectionChange">
 <!--      <el-table-column type="selection" width="55"></el-table-column>-->
 <!--      <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>-->
-      <el-table-column prop="nickname" label="走失宠物名字"></el-table-column>
-      <el-table-column prop="type" label="种类"></el-table-column>
+      <el-table-column prop="nickname" label="优秀喂溜专员"></el-table-column>
+      <el-table-column prop="type" label="工作时长"></el-table-column>
       <el-table-column prop="sex" label="性别"></el-table-column>
       <el-table-column prop="person" label="联系人"></el-table-column>
       <el-table-column prop="phone" label="联系方式"></el-table-column>
-      <el-table-column prop="status1" label="已丢失/带领回"></el-table-column>
-      <el-table-column prop="status2" label="找回状态"></el-table-column>
+   
+      
 
     </el-table>
     <div  style="padding: 10px; margin: 10px 0; background-color: #fff; border-radius: 10px">
@@ -27,15 +27,15 @@
 
     <el-dialog title="信息" :visible.sync="dialogFormVisible" width="30%" :close-on-click-modal="false">
       <el-form label-width="110px" size="small" style="width: 90%">
-        <el-form-item label="走失宠物名字">
+        <el-form-item label="优秀喂溜专员">
           <el-input v-model="form.nickname" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="种类">
           <el-input v-model="form.type" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="性别">
-          <el-radio v-model="form.sex" label="公">公</el-radio>
-          <el-radio v-model="form.sex" label="母">母</el-radio>
+          <el-radio v-model="form.sex" label="男">男</el-radio>
+          <el-radio v-model="form.sex" label="女">女</el-radio>
         </el-form-item>
         <el-form-item label="联系人">
           <el-input v-model="form.person" autocomplete="off"></el-input>
@@ -43,14 +43,8 @@
         <el-form-item label="联系方式">
           <el-input v-model="form.phone" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="已丢失/待领回">
-          <el-radio v-model="form.status1" label="已丢失">已丢失</el-radio>
-          <el-radio v-model="form.status1" label="待领回">待领回</el-radio>
-        </el-form-item>
-        <el-form-item label="找回状态">
-          <el-radio v-model="form.status2" label="未找到">未找到</el-radio>
-          <el-radio v-model="form.status2" label="已找到">已找到</el-radio>
-        </el-form-item>
+      
+        
 
       </el-form>
       <div slot="footer" class="dialog-footer">

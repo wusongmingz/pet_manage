@@ -9,7 +9,7 @@
   >
     <div style="height: 60px; line-height: 60px; text-align: center">
       <img src="../assets/宠物天地.png" alt="" style="width: 30px; position: relative; top: 7px;margin-right: 5px">
-      <b style="color: white; margin-left: 5px" v-show="logoTextShow">宠物管理系统</b>
+      <b style="color: white; margin-left: 5px" v-show="logoTextShow">同城喂溜管理系统</b>
     </div>
     <div v-for="item in menus" :key="item.id">
       <div v-if="item.path">

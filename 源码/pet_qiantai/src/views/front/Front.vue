@@ -12,13 +12,13 @@
 
         <el-menu :default-active="'1'" class="el-menu-demo" mode="horizontal" router>
           <el-menu-item index="/front/home">首页</el-menu-item>
-          <el-menu-item index="/front/adopt">宠物领养</el-menu-item>
-          <el-menu-item index="/front/salvation">流浪宠物救助</el-menu-item>
-          <el-menu-item index="/front/feed">宠物上门喂养</el-menu-item>
-          <el-menu-item index="/front/lost">丢失宠物查看</el-menu-item>
-          <el-menu-item index="/front/rescue">流浪宠物救助站</el-menu-item>
-          <el-menu-item index="/front/article">宠物论坛</el-menu-item>
-          <el-menu-item index="/front/donate">服务介绍</el-menu-item>
+         
+          <el-menu-item index="/front/salvation">成为'喂溜专员'</el-menu-item>
+          <el-menu-item index="/front/feed">同城喂溜服务预订</el-menu-item>
+          <el-menu-item index="/front/lost">喂溜优秀服务专员</el-menu-item>
+          <el-menu-item index="/front/rescue">线下溜宠打卡地点推荐</el-menu-item>
+          <el-menu-item index="/front/article">宠物异常行为与健康咨询</el-menu-item>
+          <el-menu-item index="/front/donate">关于我们</el-menu-item>
           <el-menu-item index="/front/articleKp">宠物资讯</el-menu-item>
           <el-menu-item index="/front/activity">热门活动</el-menu-item>
         </el-menu>

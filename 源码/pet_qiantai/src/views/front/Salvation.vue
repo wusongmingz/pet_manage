@@ -1,243 +1,68 @@
 <template>
-  <div style="min-height: calc(100vh - 70px)">
-<!--    <div style="margin: 10px 0">-->
-<!--      <el-input style="width: 200px" placeholder="请输入名称" suffix-icon="el-icon-search" v-model="name"></el-input>-->
-<!--&lt;!&ndash;      <el-input style="width: 200px" placeholder="请输入" suffix-icon="el-icon-message" class="ml-5" v-model="email"></el-input>&ndash;&gt;-->
-<!--&lt;!&ndash;      <el-input style="width: 200px" placeholder="请输入" suffix-icon="el-icon-position" class="ml-5" v-model="address"></el-input>&ndash;&gt;-->
-<!--      <el-button class="ml-5" type="primary" @click="load">搜索</el-button>-->
-<!--      <el-button type="warning" @click="reset">重置</el-button>-->
-<!--    </div>-->
-
+  <div style="padding-bottom: 20px">
+    <!-- 申请公告标题 -->
     <div style="margin: 10px 0">
-      <el-button type="primary" @click="handleAdd" size="mid">新增报告</el-button>
-<!--      <el-popconfirm-->
-<!--          class="ml-5"-->
-<!--          confirm-button-text='确定'-->
-<!--          cancel-button-text='我再想想'-->
-<!--          icon="el-icon-info"-->
-<!--          icon-color="red"-->
-<!--          title="您确定批量删除这些数据吗？"-->
-<!--          @confirm="delBatch"-->
-<!--      >-->
-<!--        <el-button type="danger" slot="reference">批量删除 <i class="el-icon-remove-outline"></i></el-button>-->
-<!--      </el-popconfirm>-->
-      <!-- <el-upload action="http://localhost:9090/salvation/import" :show-file-list="false" accept="xlsx" :on-success="handleExcelImportSuccess" style="display: inline-block">
-        <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i></el-button>
-      </el-upload>
-      <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i></el-button> -->
-    </div>
-
-    <el-table :data="tableData"  stripe  :show-header="false" size="mid" style="border-radius: 10px">
-<!--      <el-table-column type="selection" width="55"></el-table-column>-->
-<!--      <el-table-column prop="id" label="ID" width="80" sortable></el-table-column>-->
-      <el-table-column label="图片" width="150"><template slot-scope="scope"><el-image style="width: 100px; height: 100px" :src="scope.row.img" :preview-src-list="[scope.row.img]"></el-image></template></el-table-column>
-      <el-table-column prop="information" label="情况描述"></el-table-column>
-      <el-table-column prop="address" label="地点"></el-table-column>
-      <el-table-column prop="time" label="发现时间"></el-table-column>
-      <el-table-column prop="person" label="联系人"></el-table-column>
-      <el-table-column prop="phone" label="联系方式"></el-table-column>
-      <el-table-column prop="state" label="解决状态"></el-table-column>
-
-<!--      <el-table-column label="操作"  width="180" align="center">-->
-<!--        <template slot-scope="scope">-->
-<!--          <el-button type="success" @click="handleEdit(scope.row)">编辑 <i class="el-icon-edit"></i></el-button>-->
-<!--          <el-popconfirm-->
-<!--              class="ml-5"-->
-<!--              confirm-button-text='确定'-->
-<!--              cancel-button-text='我再想想'-->
-<!--              icon="el-icon-info"-->
-<!--              icon-color="red"-->
-<!--              title="您确定删除吗？"-->
-<!--              @confirm="del(scope.row.id)"-->
-<!--          >-->
-<!--            <el-button type="danger" slot="reference">删除 <i class="el-icon-remove-outline"></i></el-button>-->
-<!--          </el-popconfirm>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-    </el-table>
-    <div style="margin: 10px 0; padding: 10px; background-color: #fff">
-      <el-pagination
-          size="mid"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="pageNum"
-          :page-sizes="[2, 5, 10, 20]"
-          :page-size="pageSize"
-          layout="total, prev, pager, next"
-          :total="total">
-      </el-pagination>
-    </div>
-
-    <el-dialog title="信息" :visible.sync="dialogFormVisible" width="30%" :close-on-click-modal="false">
-      <el-form label-width="100px" size="mid" style="width: 90%">
-        <el-form-item label="情况描述" size="mid">
-          <el-input v-model="form.information" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="现场照片">
-          <el-upload action="http://localhost:9090/file/upload" ref="img" :on-success="handleImgUploadSuccess">
-            <el-button size="mid" type="primary" >点击上传</el-button>
-          </el-upload>
-        </el-form-item>
-        <el-form-item label="地点">
-          <el-input v-model="form.address" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="发现时间">
-          <el-date-picker v-model="form.time" type="datetime" value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"></el-date-picker>
-        </el-form-item>
-        <el-form-item label="联系人">
-          <el-input v-model="form.person" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="联系方式">
-          <el-input v-model="form.phone" autocomplete="off"></el-input>
-        </el-form-item>
-<!--        <el-form-item label="解决状态">-->
-<!--          <el-select clearable v-model="form.state" placeholder="请选择">-->
-<!--            <el-option v-for="item in ['未解决', '已解决']" :key="item" :label="item" :value="item"></el-option>-->
-<!--          </el-select>-->
-<!--        </el-form-item>-->
-
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false" size="mid">取 消</el-button>
-        <el-button type="primary" @click="save" size="mid">确 定</el-button>
+      <div style="width: 100%; display: flex">
+        <div style="width:100%">
+          <div style="padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center">
+            <div style="padding: 10px 0; font-size: 28px; color: rgb(206, 10, 10)">喂溜专员申请公告</div>
+            <video  src="../../assets/WeChat_20250219225206.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video>
+          </div>
+        </div>
       </div>
-    </el-dialog>
+    </div>
+    <!-- 招募提示 -->
+    <div style="margin: 10px 0; padding: 20px 10px; font-size: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); color: rgb(20, 19, 19); text-align: center">
+      <p>2025喂溜专员火热招募中！请仔细阅读了解平台招募要求与须知后再进行申请，期待您的加入~</p>
+    </div>
+    <!-- 招聘要求 -->
+    <div style="margin: 10px 0; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+      <div style="padding: 10px 0; font-size: 22px; color: rgb(20, 19, 19); margin: 0 0 10px">招聘要求</div>
+      <ul style="padding-left: 20px; margin: 0">
+        <li style="margin-bottom: 8px">热爱宠物，有强烈的责任心和爱心，能细心照顾宠物的饮食起居和安全。</li>
+        <li style="margin-bottom: 8px">身体健康，具备良好的体能，能够适应户外遛宠的工作强度。</li>
+        <li style="margin-bottom: 8px">拥有一定的宠物饲养、护理知识和经验，了解常见宠物的习性和需求。</li>
+        <li style="margin-bottom: 8px">具备优秀的沟通能力，能够与宠物主人保持良好的沟通，及时反馈宠物的情况。</li>
+        <li style="margin-bottom: 8px">工作认真负责，有较强的时间观念，严格遵守工作安排和服务流程。</li>
+        <li style="margin-bottom: 8px">能够熟练使用智能手机，以便接收订单、记录服务情况和与客户沟通。</li>
+      </ul>
+    </div>
+    <!-- 工作福利 -->
+    <div style="margin: 10px 0; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+      <div style="padding: 10px 0; font-size: 22px; color: rgb(20, 19, 19); margin: 0 0 10px">工作福利</div>
+      <ul style="padding-left: 20px; margin: 0">
+        <li style="margin-bottom: 8px">具有竞争力的薪资待遇，多劳多得，根据服务订单数量和质量获得相应报酬。</li>
+        <li style="margin-bottom: 8px">灵活的工作时间，可根据自己的日程安排自由接单，平衡工作与生活。</li>
+        <li style="margin-bottom: 8px">系统的培训支持，平台提供专业的宠物护理、服务规范等培训课程，帮助您提升技能。</li>
+        <li style="margin-bottom: 8px">丰富的团建活动，定期组织团队聚会、户外活动等，增强团队凝聚力和归属感。</li>
+        <li style="margin-bottom: 8px">广阔的发展空间，表现优秀者有机会晋升为团队负责人或获得更多的管理职责。</li>
+      </ul>
+    </div>
+    <!-- 申请方式 -->
+    <div style="margin: 10px 0; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)">
+      <div style="padding: 10px 0; font-size: 22px; color: rgb(20, 19, 19); margin: 0 0 10px">申请方式</div>
+      <p>如果您认为自己符合以上要求，欢迎通过以下方式申请成为喂溜专员：</p>
+      <ol style="padding-left: 20px; margin: 0">
+        <li style="margin-bottom: 8px">添加下面客服微信</li>
+        <li style="margin-bottom: 8px">发送个人信息，包括姓名、联系方式、宠物相关经验等。</li>
+        <li style="margin-bottom: 8px">客服收到申请后，我们会在 [X] 个工作日内与您联系，进行进一步的沟通和审核。</li>
+      </ol>
+      <li style="margin-bottom: 8px">客服微信：WuGetLucky</li>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Salvation",
+  name: "FeederApplication",
   data() {
-    return {
-      tableData: [],
-      total: 0,
-      pageNum: 1,
-      pageSize: 5,
-      name: "",
-      form: {},
-      dialogFormVisible: false,
-      multipleSelection: [],
-      user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {}
-    }
+    return {};
   },
-  created() {
-    this.load()
-  },
-  methods: {
-    load() {
-      this.request.get("/salvation/page", {
-        params: {
-          pageNum: this.pageNum,
-          pageSize: this.pageSize,
-          name: this.name,
-        }
-      }).then(res => {
-        this.tableData = res.data.records
-        this.total = res.data.total
-      })
-    },
-    save() {
-      this.request.post("/salvation", this.form).then(res => {
-        if (res.code === '200') {
-          this.$message.success("保存成功")
-          this.dialogFormVisible = false
-          this.load()
-        } else {
-          this.$message.error("保存失败")
-        }
-      })
-    },
-    handleAdd() {
-      this.dialogFormVisible = true
-      this.form = {}
-      this.$nextTick(() => {
-        if(this.$refs.img) {
-           this.$refs.img.clearFiles();
-         }
-         if(this.$refs.file) {
-          this.$refs.file.clearFiles();
-         }
-      })
-    },
-    handleEdit(row) {
-      this.form = JSON.parse(JSON.stringify(row))
-      this.dialogFormVisible = true
-       this.$nextTick(() => {
-         if(this.$refs.img) {
-           this.$refs.img.clearFiles();
-         }
-         if(this.$refs.file) {
-          this.$refs.file.clearFiles();
-         }
-       })
-    },
-    del(id) {
-      this.request.delete("/salvation/" + id).then(res => {
-        if (res.code === '200') {
-          this.$message.success("删除成功")
-          this.load()
-        } else {
-          this.$message.error("删除失败")
-        }
-      })
-    },
-    handleSelectionChange(val) {
-      console.log(val)
-      this.multipleSelection = val
-    },
-    delBatch() {
-      if (!this.multipleSelection.length) {
-        this.$message.error("请选择需要删除的数据")
-        return
-      }
-      let ids = this.multipleSelection.map(v => v.id)  // [{}, {}, {}] => [1,2,3]
-      this.request.post("/salvation/del/batch", ids).then(res => {
-        if (res.code === '200') {
-          this.$message.success("批量删除成功")
-          this.load()
-        } else {
-          this.$message.error("批量删除失败")
-        }
-      })
-    },
-    reset() {
-      this.name = ""
-      this.load()
-    },
-    handleSizeChange(pageSize) {
-      console.log(pageSize)
-      this.pageSize = pageSize
-      this.load()
-    },
-    handleCurrentChange(pageNum) {
-      console.log(pageNum)
-      this.pageNum = pageNum
-      this.load()
-    },
-    handleFileUploadSuccess(res) {
-      this.form.file = res
-    },
-    handleImgUploadSuccess(res) {
-      this.form.img = res
-    },
-    download(url) {
-      window.open(url)
-    },
-    exp() {
-      window.open("http://localhost:9090/salvation/export")
-    },
-    handleExcelImportSuccess() {
-      this.$message.success("导入成功")
-      this.load()
-    }
-  }
-}
+  created() {},
+  methods: {}
+};
 </script>
 
-
 <style>
-.headerBg {
-  background: #eee!important;
-}
+/* 这里原参考代码 style 为空，保留为空 */
 </style>
