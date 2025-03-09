@@ -20,4 +20,13 @@ public class BookingService {
     public void deleteBooking(Long id) {
         bookingRepository.deleteById(id);
     }
+
+    public List<Booking> getBookingsByUsername(String name) {
+        // 实现通过用户名查询预订数据逻辑
+        return bookingRepository.findByname(name);
+    }
+    public boolean completeBooking(Long id) {
+        int rowsAffected = bookingRepository.updateBookingStatus(id, Booking.STATUS_COMPLETED);
+        return rowsAffected > 0;
+    }
 }

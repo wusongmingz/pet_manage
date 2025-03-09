@@ -40,6 +40,9 @@
                 <router-link to="/">后台管理</router-link>
               </el-dropdown-item>
               <el-dropdown-item style="font-size: 14px; padding: 5px 0">
+                <router-link to="/front/order">个人订单</router-link>
+              </el-dropdown-item>
+              <el-dropdown-item style="font-size: 14px; padding: 5px 0">
                 <router-link to="/front/password">修改密码</router-link>
               </el-dropdown-item>
               <el-dropdown-item style="font-size: 14px; padding: 5px 0">

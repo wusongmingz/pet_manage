@@ -39,4 +39,19 @@ public class BookingController {
             return new ResponseEntity<>("预订数据删除失败", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    // 通过用户名查询某一个用户的预订数据接口
+    @GetMapping("/byUsername")
+    public ResponseEntity<List<Booking>> getBookingsByUsername(@RequestParam String name) {
+        List<Booking> bookings = bookingService.getBookingsByUsername(name);
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+    @PutMapping("/complete/{id}")
+    public ResponseEntity<String> completeBooking(@PathVariable Long id) {
+        boolean isCompleted = bookingService.completeBooking(id);
+        if (isCompleted) {
+            return new ResponseEntity<>("订单完成，状态已更新", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("订单完成失败，可能订单 ID 不存在", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

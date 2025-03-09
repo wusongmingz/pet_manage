@@ -19,6 +19,9 @@
           <a href="/front/home">前台主页</a>
         </el-dropdown-item>
         <el-dropdown-item style="font-size: 14px; padding: 5px 0">
+          <router-link to="/password">个人订单</router-link>
+        </el-dropdown-item>
+        <el-dropdown-item style="font-size: 14px; padding: 5px 0">
           <router-link to="/password">修改密码</router-link>
         </el-dropdown-item>
         <el-dropdown-item style="font-size: 14px; padding: 5px 0">

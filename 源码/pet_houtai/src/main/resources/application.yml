@@ -1,7 +1,12 @@
 server:
   port: 9090
 
+
+
 spring:
+  jpa:
+    hibernate:
+      ddl-auto=update:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/stray_animal?serverTimezone=GMT%2b8

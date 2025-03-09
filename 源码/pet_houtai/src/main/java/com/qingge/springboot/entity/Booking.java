@@ -1,6 +1,5 @@
 package com.qingge.springboot.entity;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,17 +15,24 @@ public class Booking {
     private String timeRange;
     private String location;
     private String petInfo;
+    private String username;
+    private String status;
 
-    // 构造函数、Getter 和 Setter 方法
+    public static final String STATUS_PENDING = "PENDING";
+    public static final String STATUS_COMPLETED = "COMPLETED";
+
     public Booking() {
+        this.status = STATUS_PENDING;
     }
 
-    public Booking(String serviceTitle,String name, String timeRange, String location, String petInfo) {
+    public Booking(String serviceTitle, String name, String timeRange, String location, String petInfo, String username) {
         this.serviceTitle = serviceTitle;
         this.name = name;
         this.timeRange = timeRange;
         this.location = location;
         this.petInfo = petInfo;
+        this.username = username;
+        this.status = STATUS_PENDING;
     }
 
     public Long getId() {
@@ -36,7 +42,8 @@ public class Booking {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
 
@@ -74,5 +81,21 @@ public class Booking {
 
     public void setPetInfo(String petInfo) {
         this.petInfo = petInfo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

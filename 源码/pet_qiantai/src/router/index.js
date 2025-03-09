@@ -27,6 +27,7 @@ const routes = [
     children: [
       { path: 'person', name: '个人信息', component: () => import('../views/front/Person.vue')},
       { path: 'password', name: '修改密码', component: () => import('../views/front/Password.vue')},
+      { path: 'order', name: '个人订单', component: () => import('../views/front/Order.vue')},
       {
         path: 'home',
         name: 'FrontHome',

@@ -237,13 +237,19 @@ export default {
 
 .service-item {
   width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
   padding: 15px;
   margin: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.05); 
+  /* 添加背景颜色 */
+  background-color: white; 
+  transition: all 0.3s ease;
 }
-
+.service-item:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 12px 40px rgba(0, 0, 0, 0.1);
+}
 .price-list {
   list-style-type: none;
   padding: 0;

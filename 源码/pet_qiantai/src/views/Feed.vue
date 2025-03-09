@@ -30,10 +30,12 @@
       <el-table-column prop="petInfo" label="备注"></el-table-column>
       <el-table-column prop="serviceTitle" label="选择服务"></el-table-column>
       <el-table-column prop="timeRange" label="上门时间"></el-table-column>
+      <el-table-column prop="status" label="完成状态"></el-table-column>
 
       <el-table-column  label="操作"  width="180" align="center">
         <template slot-scope="scope">
-          <el-button prop="id" type="success" @click="handleEdit(scope.row.id)">完成 <i class="el-icon-edit"></i></el-button>
+          <el-button prop="id" type="success" v-if="scope.row.status === 'PENDING'" @click="handleEdit(scope.row.id)">完成 <i class="el-icon-edit"></i></el-button>
+          <el-button prop="id" type="" v-else @click="handleEdit(scope.row.id)">已完成 </el-button>
           <el-popconfirm
               class="ml-5"
               confirm-button-text='确定'
@@ -157,7 +159,7 @@ export default {
     },
     sendRequest(id) {
     // 在这里发送请求，使用 id 作为参数
-    this.request.delete(`/bookings/${id}`)
+    this.request.put(`/bookings/complete/${id}`)
       .then(res => {
         console.log(res);
       })
