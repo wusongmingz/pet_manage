@@ -3,7 +3,7 @@
     <div style="margin: 10px 0">
       <div style="width: 100%; display: flex">
         <div style="width:100%">
-          <video style="width: 100%" src="../../assets/WeChat_20250219203917.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video>
+          <!-- <video style="width: 100%" src="../../assets/WeChat_20250219203917.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video> -->
         </div>
       </div>
     </div>

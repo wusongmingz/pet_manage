@@ -6,7 +6,7 @@
         <div style="width:100%">
           <div style="padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center">
             <div style="padding: 10px 0; font-size: 28px; color: rgb(206, 10, 10)">喂溜专员申请公告</div>
-            <video  src="../../assets/WeChat_20250219225206.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video>
+            <!-- <video  src="../../assets/WeChat_20250219225206.mp4" muted="true" autoplay="autoplay" controls="controls" loop="loop"></video> -->
           </div>
         </div>
       </div>

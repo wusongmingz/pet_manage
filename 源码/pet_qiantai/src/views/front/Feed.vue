@@ -9,7 +9,7 @@
         <div class="service-list">
           <div v-for="service in services" :key="service.id" class="service-item">
             <h3>{{ service.title }}</h3>
-            <img :src="service.image" alt="Service Image" style="width: 150px;height: 150px;"/>
+            <!-- <img :src="service.image" alt="Service Image" style="width: 150px;height: 150px;"/> -->
             <video :src="service.video" controls style="width: 150px;height: 150px; margin-top: 10px;"></video>
             <p>{{ service.description }}</p>
             <div v-if="service.prices.length > 0" class="price-list">
@@ -18,12 +18,22 @@
                 <span>￥{{ price.price }}</span>
               </div>
             </div>
-            <button v-if="service.canBook" @click="openBookingModal(service)">立即预订</button>
+            <button v-if="service.canBook" @click="openPaymentModal(service)">立即预订</button>
             <p v-if="service.note">{{ service.note }}</p>
             <div v-if="service.details" class="service-details">
               <h4>服务详情</h4>
               <p>{{ service.details }}</p>
             </div>
+          </div>
+        </div>
+
+        <!-- 支付模态框 -->
+        <div v-if="paymentModalVisible" class="payment-modal">
+          <div class="payment-modal-content">
+            <span class="close" @click="closePaymentModal">&times;</span>
+            <h2>请扫描二维码支付</h2>
+            <img src="../../../public/play.jpg" alt="QR Code" style="width: 300px; height: 300px; margin: 20px auto; display: block;">
+            <button @click="simulatePaymentSuccess">支付成功</button>
           </div>
         </div>
 
@@ -137,6 +147,7 @@ export default {
           video: 'http://localhost:9090/file/advance_handover_video.mp4'
         }
       ],
+      paymentModalVisible: false,
       bookingModalVisible: false,
       selectedService: null,
       booking: {
@@ -149,6 +160,18 @@ export default {
     };
   },
   methods: {
+    openPaymentModal(service) {
+      this.selectedService = service;
+      this.paymentModalVisible = true;
+    },
+    closePaymentModal() {
+      this.paymentModalVisible = false;
+      this.selectedService = null;
+    },
+    simulatePaymentSuccess() {
+      this.paymentModalVisible = false;
+      this.bookingModalVisible = true;
+    },
     submitBooking() {
       const bookingData = {
         "name": this.user.username,
@@ -243,6 +266,49 @@ button {
 .service-details {
   margin-top: 10px;
   text-align: left;
+}
+
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+
+.payment-modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.payment-modal-content img {
+  display: block;
+  margin: 0 auto;
+}
+
+.payment-modal-content button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  margin: 0 auto;
 }
 
 .booking-modal {
